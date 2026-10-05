@@ -2,7 +2,7 @@
 
 <div align="center">
   <img src="./docs/assets/engramedit-logo-editorial.png" alt="EngramEdit" width="150">
-  <h3>EngramEdit: Decoupled Knowledge Updates in LLMs through Conditional Memory</h3>
+  <h1>EngramEdit: Decoupled Knowledge Updates in LLMs through Conditional Memory</h1>
   <a href="https://modalitydance.github.io/EngramEdit/">
     <img src="https://img.shields.io/badge/Project-Page-6a5acd?style=for-the-badge" alt="Project Page">
   </a>
@@ -29,13 +29,13 @@
 - **Knowledge and capability preservation.** Largely preserve unrelated knowledge and general capabilities as factual updates accumulate.
 
 <div align="center">
-  <img src="./docs/assets/intro_overview.svg" alt="Conditional memory structure, Engram's memory-disabling evidence, and decoupled knowledge updates with EngramEdit." width="80%">
+  <img src="./docs/assets/intro_overview.svg" alt="Conditional memory structure, Engram's memory-disabling evidence, and decoupled knowledge updates with EngramEdit." width="100%">
   <p><em>From conditional memory to an editable knowledge interface.</em></p>
 </div>
 
 ## 🔥 News
 
-- **[2026.10]** Public release preparation is in progress.
+- **[2026.10]** Initial release of EngramEdit code and project page.
 
 ## 📑 Table of Contents
 
@@ -254,7 +254,7 @@ print("After editing:", answer(prompt))
 3. **Update memory jointly.** Solve for embedding updates that match the targets, with stronger penalties for frequently reused embeddings.
 
 <div align="center">
-<img src="./docs/assets/method.svg" alt="EngramEdit's target computation, memory mapping, and joint update procedure." width="80%">
+<img src="./docs/assets/method.svg" alt="EngramEdit's target computation, memory mapping, and joint update procedure." width="100%">
 </div>
 
 
