@@ -1,313 +1,181 @@
-<!--
-ModalityDance — Project Page Template (Internal v1.0)
-
-Author: Hongru Cai
-Last updated: 2025.12.13
-
-Purpose:
-This template is designed for a lightweight research project page.
-The main goal of a project page is to help readers quickly understand
-what the project does and why it matters.
-DO NOT REDISTRIBUTE or SHARE EXTERNALLY.
-
-Guidelines:
-- Keep text concise.
-- Prefer figures, videos, demos, and interactive examples over long descriptions.
-- This is a minimal template; feel free to extend it with more complex layouts, animations, or interactions if needed.
-- You can use live server in VS Code or similar tools to preview the page locally.
-
-How to use:
-1) Replace all placeholders with project-specific content.
-2) Put images/videos under ./assets/ and update paths accordingly.
-3) Enable GitHub Pages:
-   Repo Settings → Pages → Deploy from a branch → select /docs as the folder.
-
-Required sections:
-- {Project Title}
-- {Author list with links}
-- {Affiliations}
-- {Paper link} and {Code link}
-- TL;DR
-- Abstract
-- Method
-  - At least one key figure with caption
-- Results
-- BibTeX
-- Acknowledgements
-
-Optional sections:
-- HuggingFace model or dataset links
-- Demo link
-- Video link
-- Detailed results
-- Interactive examples
-- More sections as needed
-
-Release checklist:
-- Remove internal-only comments.
-- Verify all links.
-- Check that all images and videos render correctly.
-- Update BibTeX.
-- Confirm the GitHub Pages site is live.
-- Make sure the maintainer info and update date are correct.
--->
-
-
 <!doctype html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{Project Title}</title>
+  <title>EngramEdit: Decoupled Knowledge Updates in LLMs through Conditional Memory</title>
+  <meta name="description" content="EngramEdit updates factual knowledge through conditional memory, supporting recall across expressions and multi-hop reasoning while largely preserving unrelated knowledge and general capabilities." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #ffffff;
-      --fg: #111111;
-      --muted: #555555;
-      --card: #f6f7f9;
-      --border: #e7e7e7;
-      --accent: #6a5acd;
-      --link: #1f6feb;
-      --maxw: 920px;
-      --radius: 12px;
-      --shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+      --paper: #fffffe;
+      --ink: #272343;
+      --text: #34384a;
+      --muted: #666978;
+      --rule: #dedee3;
+      --link: #405d68;
+      --serif: "Lora", Georgia, "Times New Roman", serif;
+      --sans: "Plus Jakarta Sans", "Trebuchet MS", Helvetica, sans-serif;
     }
 
-    html,
-    body {
-      background: var(--bg);
-      color: var(--fg);
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
-      line-height: 1.65;
+      background: var(--paper);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.85;
+      -webkit-font-smoothing: antialiased;
     }
+    a { color: var(--link); text-decoration-color: #b3bfc3; text-underline-offset: 4px; }
+    a:hover { color: var(--ink); text-decoration-color: currentColor; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--link); outline-offset: 5px; }
+    strong { font-weight: 650; color: var(--ink); }
+    sup { font-size: 0.7em; line-height: 0; margin-left: 2px; }
+    .container { max-width: 980px; margin: 0 auto; padding: 32px 40px 40px; }
 
-    a {
-      color: var(--link);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .container {
-      max-width: var(--maxw);
-      margin: 44px auto;
-      padding: 0 20px 70px;
-    }
-
-    /* ===== Header ===== */
-    header {
-      text-align: center;
-    }
-
-    h1 {
-      margin: 0 0 10px;
-      font-size: 2.1rem;
-      font-weight: 760;
-      letter-spacing: -0.02em;
-    }
-
-    .subtitle {
-      color: var(--muted);
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-    }
-
-    .authors,
-    .affils {
-      color: var(--muted);
-      font-size: 1.2rem;
-      margin: 6px 0;
-      font-weight: 500;
-    }
-
-    .authors a{
-      color:var(--link);              
-      border-bottom:1px dotted var(--link);
-    }
-
-    .authors a:hover{
-      color:var(--link);
-      text-decoration:none;
-      border-bottom-style:solid;      
-    }
-
-    /* ===== Link buttons ===== */
-    .links {
+    .md-line {
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin: 18px 0 30px;
+      align-items: center;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--rule);
     }
-
+    .md-line a { display: inline-flex; }
+    .logo { width: auto; height: 23px; }
+    header { text-align: center; padding: 42px 0 36px; border-bottom: 1px solid var(--rule); }
+    .project-logo { display: block; width: 135px; margin: 0 auto 24px; }
+    h1, h2, h3 { color: var(--ink); font-family: var(--serif); }
+    h1 {
+      max-width: 820px;
+      margin: 0 auto 25px;
+      font-size: clamp(1.85rem, 3.6vw, 2.55rem);
+      line-height: 1.3;
+      font-weight: 600;
+      letter-spacing: -0.035em;
+      text-wrap: balance;
+    }
+    .authors { font-size: 1.1rem; line-height: 1.95; color: var(--ink); }
+    .authors a { color: inherit; }
+    .affils { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px 18px; max-width: 900px; margin: 12px auto 0; font-size: 0.96rem; line-height: 1.9; color: var(--text); }
+    .contact { margin: 9px 0 0; font-size: 0.96rem; color: var(--text); }
+    .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 24px; margin: 23px 0 0; }
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 14px;
-      border: 1px solid var(--border);
-      background: var(--card);
-      border-radius: 999px;
-      font-weight: 650;
-      font-size: 1rem;
-      color: var(--fg);
-      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
-      transition: transform .05s ease, box-shadow .12s ease;
-    }
-
-    .btn:hover {
+      display: inline-block;
+      padding: 0 0 2px;
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 0.84rem;
+      font-weight: 600;
+      line-height: 1.7;
       text-decoration: none;
-      transform: translateY(-1px);
-      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+      border-bottom: 1px solid #a4adb3;
     }
+    .btn:hover { border-color: var(--ink); }
+    .btn[aria-disabled="true"] { color: var(--muted); border: 0; font-weight: 400; }
+    .btn small { font-size: 0.85em; }
+    .project-links { align-items: flex-start; gap: 18px 28px; margin-top: 27px; }
+    .project-links .btn { display: inline-flex; align-items: flex-start; gap: 8px; font-size: 1rem; line-height: 1.5; border: 0; padding: 0; text-align: left; }
+    .project-links .link-label { white-space: nowrap; }
+    .project-links a .link-label { text-decoration: underline; text-decoration-color: #b3bfc3; text-underline-offset: 5px; }
+    .project-links a:hover .link-label { text-decoration-color: currentColor; }
+    .link-icon { flex: 0 0 18px; width: 18px; height: 18px; margin-top: 3px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .key-features { margin-top: 14px; }
+    .key-features li { margin-bottom: 17px; }
+    .key-features strong { display: block; margin-bottom: 2px; }
+    .key-features .feature-description { text-wrap: pretty; }
 
-    /* ===== Sections ===== */
-    section {
-      margin-top: 36px;
-    }
+    section { margin-top: 52px; scroll-margin-top: 24px; }
+    h2 { margin: 0 0 20px; font-size: 1.75rem; font-weight: 600; line-height: 1.3; letter-spacing: -0.025em; }
+    h3 { margin: 30px 0 12px; font-size: 1.16rem; font-weight: 600; line-height: 1.45; }
+    p { margin: 0 0 17px; }
+    .card, .tldr { padding: 0; background: none; border: 0; box-shadow: none; }
+    .card p:last-child { margin-bottom: 0; }
+    .tldr { font-size: 1.03rem; }
+    ul, ol { margin: 14px 0 0; padding-left: 1.4em; }
+    li { padding-left: 6px; margin-bottom: 11px; }
+    li::marker { color: var(--muted); }
+    figure { margin: 28px 0 0; }
+    img { max-width: 100%; height: auto; }
+    .figure-link { display: block; }
+    .figure-link img { display: block; width: 100%; border: 0; border-radius: 0; }
+    figcaption { max-width: 790px; margin: 12px auto 0; color: var(--muted); font-size: 0.8rem; line-height: 1.7; text-align: center; }
+    .results-table { overflow-x: auto; margin: 24px 0 30px; }
+    .main-results { width: 100%; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; font-variant-numeric: tabular-nums; }
+    caption { text-align: left; margin-bottom: 12px; color: var(--muted); font-size: 0.8rem; line-height: 1.7; }
+    th, td { padding: 11px 12px; text-align: right; }
+    th:first-child, td:first-child { text-align: left; }
+    thead { border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule); }
+    tbody { border-bottom: 1px solid var(--ink); }
+    tbody tr + tr { border-top: 1px solid #ececef; }
+    .editing-results th, .editing-results td { white-space: nowrap; padding: 10px 4px; }
+    .editing-results th { font-size: inherit; }
+    .editing-results caption { color: var(--muted); font-size: 0.8rem; font-weight: 400; }
+    .editing-results thead th { text-align: right; }
+    .editing-results thead th[rowspan] { text-align: left; }
+    .editing-results th[colspan] { text-align: center; border-bottom: 1px solid var(--rule); }
+    .editing-results abbr { text-decoration: none; }
+    .editing-results .ci { margin-left: 2px; color: var(--muted); font-size: 0.74em; vertical-align: sub; }
+    .editing-results .second { text-decoration: underline; text-underline-offset: 3px; }
+    .editing-results .pre-edit { color: var(--muted); border-bottom: 1px solid var(--rule); }
+    .editing-results .ours { background: #f3f5f4; }
 
-    h2 {
-      text-align: center;
-      font-size: 1.6rem;
-      margin-bottom: 12px;
-      letter-spacing: -0.01em;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px 18px;
-      box-shadow: var(--shadow);
-    }
-
-    .tldr {
-      border-left: 4px solid var(--accent);
-      padding-left: 14px;
-    }
-
-    figure {
-      margin: 14px 0 0;
-    }
-
-    img,
-    video {
-      width: 100%;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background: #fff;
-    }
-
-    figcaption {
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 1rem;
-      text-align: center;
-    }
-
-    .grid2 {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
-
-    @media (min-width:920px) {
-      .grid2 {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    /* ===== BibTeX ===== */
-    .bibtex-wrap {
-      position: relative;
-    }
-
+    .bibtex-wrap { position: relative; }
+    .bibtex-wrap > p { padding-right: 80px; font-size: 0.9rem; color: var(--muted); }
     pre {
-      margin: 0;
+      margin: 18px 0 0;
+      padding: 22px 24px;
+      background: #f5f5f3;
+      color: var(--text);
+      font: 0.8rem/1.8 ui-monospace, "Cascadia Code", Consolas, monospace;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
       overflow: auto;
-      padding: 14px;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background: #0b1020;
-      color: #e6edf3;
-      font-size: 1rem;
-      line-height: 1.45;
+      border: 0;
+      border-radius: 0;
     }
-
-    .footnote {
-      margin-top: 14px;
-      color: var(--muted);
-      font-size: 1rem;
-      text-align: center;
-    }
-
-    .icon {
-      width: 18px;
-      height: 18px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .icon svg {
-      width: 18px;
-      height: 18px;
-      display: block;
-      fill: currentColor;
-    }
-
-    .icon-img {
-      height: 18px;
-      width: auto;
-      display: block;
-    }
-
     .copy-btn {
       position: absolute;
-      top: 10px;
-      right: 20px;
-      font-size: 0.85rem;
-      padding: 6px 10px;
-      border-radius: 10px;
-      border: 1px solid #d0d7de;
-      background: #ffffff;
+      top: 0;
+      right: 0;
+      padding: 3px 0;
+      color: var(--link);
+      background: none;
+      border: 0;
+      border-bottom: 1px solid #a4adb3;
+      font: 500 0.8rem/1.5 var(--sans);
       cursor: pointer;
     }
+    .copy-btn:hover { color: var(--ink); border-color: var(--ink); }
+    .copy-btn[data-copy-failed] { position: static; display: block; margin-bottom: 12px; }
+    .resource-links { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 16px 0; font-size: 0.88rem; }
+    #acknowledgements { font-size: 0.9rem; }
+    #acknowledgements .links { justify-content: flex-start; margin-top: 12px; }
+    .footnote { margin-top: 50px; padding-top: 20px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.76rem; line-height: 1.8; }
 
-    .copy-btn:hover {
-      background: #f0f3f6;
+    @media (max-width: 600px) {
+      body { font-size: 15px; line-height: 1.8; }
+      .container { padding: 22px 22px 30px; }
+      header { padding: 30px 0; }
+      .project-logo { width: 110px; margin-bottom: 22px; }
+      h1 { margin-bottom: 20px; }
+      .authors { font-size: 1rem; }
+      .affils, .contact { font-size: 0.9rem; }
+      .links { gap: 10px 18px; }
+      section { margin-top: 38px; }
+      h2 { font-size: 1.5rem; margin-bottom: 16px; }
+      h3 { font-size: 1.1rem; }
+      th, td { padding: 9px 10px; white-space: nowrap; }
+      pre { padding: 18px 15px; font-size: 0.74rem; }
     }
-    .md-line {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.logo {
-  height: 25px;
-  width: auto;
-  border: none;
-  border-radius: 0;
-  background: transparent;
-}
-.md-line a img {
-  transition: opacity 0.15s ease;
-}
-
-.md-line a:hover img {
-  opacity: 0.85;
-}
-
-
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
 
   <script>
@@ -327,6 +195,8 @@ Release checklist:
             btn.classList.remove("copied");
           }, 1000);
         } catch (e) {
+          btn.textContent = "Select text to copy";
+          btn.setAttribute("data-copy-failed", "true");
         }
       });
     });
@@ -335,134 +205,188 @@ Release checklist:
 </head>
 
 <body>
-  <div class="container">
-
+  <main class="container">
     <div class="md-line">
-      <a href="https://github.com/ModalityDance" target="_blank" rel="noopener">
-        <img
-          class="logo logo-long"
-          src="./assets/LOGOwithNameLong.svg"
-          alt="MD logo"
-        >
+      <a href="https://github.com/ModalityDance">
+        <img class="logo logo-long" src="./assets/LOGOwithNameLong.svg" alt="ModalityDance">
       </a>
     </div>
 
     <header>
-      <h1>🪐 {Project Title}</h1>
-      <div class="subtitle"><strong>{Short tagline or one-sentence summary}</strong></div>
-
+      <img class="project-logo" src="./assets/engramedit-logo-editorial.png" alt="EngramEdit logo">
+      <h1>EngramEdit: Decoupled Knowledge Updates in LLMs through Conditional Memory</h1>
       <div class="authors">
-        <a href="{author1_homepage}" target="_blank" rel="noopener">{Author 1}</a><sup>{1}</sup>,
-        <a href="{author2_homepage}" target="_blank" rel="noopener">{Author 2}</a><sup>{2}</sup>,
-        <a href="{author3_homepage}" target="_blank" rel="noopener">{Author 3}</a><sup>{1}</sup>
+        <a href="https://hongrucai.github.io/">Hongru Cai</a><sup>1</sup>, Ran Wei<sup>2</sup>, Wenjie Wang<sup>3</sup>,
+        Chengfa Wu<sup>2</sup>, Ning Song<sup>2</sup>,
+        Yongqi Li<sup>1</sup>, Wenjie Li<sup>1</sup>
       </div>
-
       <div class="affils">
-        <sup>1</sup>{Affiliation 1}, <sup>2</sup>{Affiliation 2}
+        <span><sup>1</sup>The Hong Kong Polytechnic University</span>
+        <span><sup>2</sup>Hangzhou Diagens Biotechnology Co., Ltd</span>
+        <span><sup>3</sup>University of Science and Technology of China</span>
       </div>
-
-      <div class="links">
-        <a class="btn" href="{paper_link}" target="_blank" rel="noopener">📄 Paper</a>
-        <a class="btn" href="{github_repo_link}">
-          <span class="icon" aria-hidden="true">
-            <img class="icon-img" src="https://cdn.jsdelivr.net/npm/simple-icons@v6/icons/github.svg" alt="GitHub" />
-          </span>
-          GitHub
+      <div class="contact">
+        {<a href="mailto:henry.hongrucai@gmail.com">henry.hongrucai</a>, <a href="mailto:liyongqi0@gmail.com">liyongqi0</a>}@gmail.com
+      </div>
+      <div class="links project-links">
+        <a class="btn" href="#">
+          <svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H5v18h14V8Z M14 3v5h5 M8 12h8 M8 16h6"/></svg>
+          <span class="link-label">Paper</span>
         </a>
-        <a class="btn" href="{hf_link}">🤗 HuggingFace</a>
-        <a class="btn" href="{demo_link}">🧪 Demo</a>
-        <a class="btn" href="{video_link}">🎥 Video</a>
+        <a class="btn" href="https://github.com/ModalityDance/EngramEdit">
+          <svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M6 7v10 M18 7v3a4 4 0 0 1-4 4H6"/></svg>
+          <span class="link-label">GitHub</span>
+        </a>
+        <a class="btn" href="#">
+          <svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c-3-2-6-2-10-1v15c4-1 7-1 10 1 3-2 6-2 10-1V4c-4-1-7-1-10 1Z M12 5v15"/></svg>
+          <span class="link-label">Hugging Face Paper</span>
+        </a>
+        <a class="btn" href="#">
+          <svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 9 5v10l-9 5-9-5V7Z M3 7l9 5 9-5 M12 12v10 M7.5 4.5l9 5"/></svg>
+          <span class="link-label">Hugging Face Model</span>
+        </a>
+        <a class="btn" href="https://github.com/ModalityDance/EngramEdit#usage-example">
+          <svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 6-6 6 6 6 M16 6l6 6-6 6 M14 3l-4 18"/></svg>
+          <span class="link-label">Usage Example</span>
+        </a>
       </div>
     </header>
 
-    <section>
-      <h2>✨ TL;DR</h2>
+    <section id="overview">
+      <h2>Overview</h2>
       <div class="card tldr">
-        1–2 sentences summarizing the core idea and main results. You can also use figures here.
+        <strong>Conditional memory</strong> expands an LLM’s capacity through learned <strong><i>n</i>-gram embeddings</strong>.
+        At each token position, the model uses token sequences of different lengths ending at that position to look up embeddings that participate in its computation.
+        <strong>EngramEdit</strong> enables factual knowledge updates through this memory.
+        It first computes the memory representations needed to predict revised facts, then jointly updates the corresponding embeddings across expressions and edits.
+        Stronger penalties on frequently reused embeddings help preserve unrelated knowledge.
+        Updated facts remain usable across different expressions and in multi-hop reasoning, while general capabilities are largely preserved.
       </div>
-    </section>
-
-    <section>
-      <h2>🧪 Demo (Optional)</h2>
+      <figure>
+        <a class="figure-link" href="./assets/intro_overview.svg">
+          <img src="./assets/intro_overview.svg" alt="Conditional memory structure, evidence from disabling Engram memory, and decoupled knowledge updates using EngramEdit.">
+        </a>
+        <figcaption>Conditional memory and knowledge updating with EngramEdit. Click any figure to view it at full resolution.</figcaption>
+      </figure>
+      <h3>Key Features</h3>
       <div class="card">
-        <p>{Short description of the demo. Videos, figures or interactive elements can be included here.}</p>
-        <!-- video or gif -->
-        <figure>
-          <video controls playsinline>
-            <source src="./assets/{demo.mp4}" type="video/mp4">
-          </video>
-          <figcaption>Demo of the system.</figcaption>
-        </figure>
+        <ul class="key-features">
+          <li><strong>Effective knowledge updates.</strong> <span class="feature-description">Revise facts through conditional memory alone, with high editing success.</span></li>
+          <li><strong>Cross-expression recall and reasoning.</strong> <span class="feature-description">Use revised facts across unseen expressions and in multi-hop reasoning.</span></li>
+          <li><strong>Knowledge and capability preservation.</strong> <span class="feature-description">Largely preserve unrelated knowledge and general capabilities through sequential updates.</span></li>
+        </ul>
       </div>
     </section>
 
-    <section>
-      <h2>📘 Abstract</h2>
+    <section id="abstract">
+      <h2>Abstract</h2>
+      <div class="card"><p>Conditional memory architectures such as DeepSeek Engram use input <i>n</i>-grams to look up learned embeddings, expanding the capacity of large language models (LLMs) with limited additional computation. Beyond model scaling, this architecture has demonstrated the potential to decouple factual knowledge storage from general-purpose computation, offering a promising route to updating factual knowledge while keeping the Transformer backbone fixed. Realizing this potential is challenging because different expressions of a fact may activate different <i>n</i>-gram embeddings, while updating shared embeddings can unintentionally change the model’s predictions about other facts. We propose <strong>EngramEdit</strong> for decoupled knowledge updates through conditional memory. EngramEdit first computes target memory representations that make the model predict the updated fact across multiple expressions. It then jointly updates the shared <i>n</i>-gram embeddings to match these targets across expressions and edits, penalizing updates to frequently reused embeddings more strongly to preserve unrelated knowledge. Experiments show that EngramEdit enables independent factual knowledge updates through conditional memory, achieving near-perfect editing success. Revised knowledge is usable across unseen expressions and in multi-hop reasoning, with nearly 3× the strongest baseline's accuracy under chain-of-thought (CoT) prompting. Unrelated knowledge and general capabilities are largely preserved even as factual updates accumulate. These findings show that EngramEdit turns conditional memory into an editable knowledge interface, extending its role beyond model scaling to support decoupled knowledge updates.</p></div>
+    </section>
+
+    <section id="method">
+      <h2>Method</h2>
       <div class="card">
-        Your abstract goes here.
+        <p>Different expressions of a fact can activate different <i>n</i>-grams, while different facts may share embeddings. EngramEdit first computes how memory representations should change, then jointly allocates those changes to the shared embeddings.</p>
+        <ol>
+          <li><strong>Compute targets.</strong> Generate additional expressions of each fact. Optimize a temporary perturbation shared across their memory representations so that the model predicts the revised fact.</li>
+          <li><strong>Map expressions to memory.</strong> Map each target representation to the activated <i>n</i>-grams, identifying embeddings shared across expressions and edits.</li>
+          <li><strong>Update memory jointly.</strong> Solve for one update per embedding to match the targets. Stronger penalties on frequently reused embeddings help preserve unrelated knowledge.</li>
+        </ol>
+        <figure>
+          <a class="figure-link" href="./assets/method.svg">
+            <img src="./assets/method.svg" alt="EngramEdit computes target representations, maps them to shared n-gram embeddings, and jointly allocates regularized updates." loading="lazy">
+          </a>
+          <figcaption>EngramEdit's target computation, memory mapping, and joint memory updating.</figcaption>
+        </figure>
       </div>
     </section>
 
-    <section>
-      <h2>🧠 Method</h2>
+    <section id="results">
+      <h2>Results</h2>
       <div class="card">
-        <p>{Brief explanation of the method and pipeline.}</p>
+        <p>Experiments on LongCat-Flash-Lite test whether facts can be updated through conditional memory, used across expressions and in reasoning, and revised while largely preserving unrelated knowledge and general capabilities.</p>
+        <h3>Effective Knowledge Updates</h3>
+        <p>EngramEdit achieves near-perfect editing success and strong generalization on CounterFact and ZsRE, with the highest Utility among the evaluated methods on both datasets.</p>
+        <div class="results-table main-results" role="region" aria-label="CounterFact and ZsRE editing results" tabindex="0">
+          <table class="editing-results">
+            <caption>Results after 2,000 sequential edits. Subscripts show 95% confidence-interval half-widths.</caption>
+            <thead>
+              <tr><th scope="col" rowspan="2">Method</th><th scope="colgroup" colspan="6">CounterFact</th><th scope="colgroup" colspan="4">ZsRE</th></tr>
+              <tr><th scope="col"><abbr title="Efficacy">Eff.</abbr> ↑</th><th scope="col"><abbr title="Generalization">Gen.</abbr> ↑</th><th scope="col"><abbr title="Specificity">Spec.</abbr> ↑</th><th scope="col"><abbr title="Utility">Util.</abbr> ↑</th><th scope="col"><abbr title="Fluency">Flu.</abbr> ↑</th><th scope="col"><abbr title="Consistency">Cons.</abbr> ↑</th><th scope="col"><abbr title="Efficacy">Eff.</abbr> ↑</th><th scope="col"><abbr title="Generalization">Gen.</abbr> ↑</th><th scope="col"><abbr title="Specificity">Spec.</abbr> ↑</th><th scope="col"><abbr title="Utility">Util.</abbr> ↑</th></tr>
+            </thead>
+            <tbody>
+              <tr class="pre-edit"><th scope="row">Pre-edited</th><td>9.5<span class="ci">±1.28</span></td><td>11.2<span class="ci">±1.19</span></td><td>86.8<span class="ci">±0.94</span></td><td>35.8</td><td>544.0<span class="ci">±1.67</span></td><td>15.0<span class="ci">±0.37</span></td><td>36.9<span class="ci">±1.30</span></td><td>36.5<span class="ci">±1.29</span></td><td>41.6<span class="ci">±1.19</span></td><td>38.3</td></tr>
+              <tr><th scope="row">FT</th><td>94.9<span class="ci">±0.96</span></td><td>63.6<span class="ci">±1.83</span></td><td>43.8<span class="ci">±1.63</span></td><td>67.4</td><td>505.1<span class="ci">±2.04</span></td><td>13.3<span class="ci">±0.36</span></td><td>76.7<span class="ci">±1.13</span></td><td>76.8<span class="ci">±1.15</span></td><td>43.1<span class="ci">±1.27</span></td><td>65.5</td></tr>
+              <tr><th scope="row">FT-L</th><td>15.3<span class="ci">±1.58</span></td><td>12.5<span class="ci">±1.24</span></td><td><span class="second">83.3</span><span class="ci">±1.11</span></td><td>37.0</td><td>542.0<span class="ci">±1.70</span></td><td>14.7<span class="ci">±0.36</span></td><td>58.0<span class="ci">±1.47</span></td><td>54.4<span class="ci">±1.48</span></td><td>45.8<span class="ci">±1.24</span></td><td>52.7</td></tr>
+              <tr><th scope="row">AdaLoRA</th><td>61.1<span class="ci">±2.13</span></td><td>27.5<span class="ci">±1.55</span></td><td>51.1<span class="ci">±1.35</span></td><td>46.6</td><td>544.3<span class="ci">±1.57</span></td><td>12.9<span class="ci">±0.35</span></td><td>70.9<span class="ci">±1.40</span></td><td>64.7<span class="ci">±1.46</span></td><td><span class="second">46.8</span><span class="ci">±1.27</span></td><td>60.8</td></tr>
+              <tr><th scope="row">UnKE</th><td>84.5<span class="ci">±1.59</span></td><td>58.0<span class="ci">±1.88</span></td><td>47.5<span class="ci">±1.61</span></td><td>63.3</td><td>546.5<span class="ci">±1.64</span></td><td>15.0<span class="ci">±0.35</span></td><td><span class="second">86.9</span><span class="ci">±1.13</span></td><td><span class="second">79.0</span><span class="ci">±1.33</span></td><td><strong>49.9</strong><span class="ci">±1.32</span></td><td><span class="second">71.9</span></td></tr>
+              <tr><th scope="row">MoEEdit</th><td><span class="second">99.1</span><span class="ci">±0.41</span></td><td><span class="second">67.1</span><span class="ci">±1.69</span></td><td>63.5<span class="ci">±1.28</span></td><td>76.6</td><td>544.7<span class="ci">±1.65</span></td><td>14.7<span class="ci">±0.33</span></td><td>85.1<span class="ci">±0.91</span></td><td>78.7<span class="ci">±1.21</span></td><td>44.4<span class="ci">±1.26</span></td><td>69.4</td></tr>
+              <tr><th scope="row"><abbr title="Memory-FT (Subject)">MFT-S</abbr></th><td>99.0<span class="ci">±0.45</span></td><td>59.1<span class="ci">±1.92</span></td><td><strong>85.2</strong><span class="ci">±0.90</span></td><td><span class="second">81.1</span></td><td><span class="second">555.2</span><span class="ci">±1.38</span></td><td><span class="second">15.3</span><span class="ci">±0.36</span></td><td>66.9<span class="ci">±1.35</span></td><td>56.5<span class="ci">±1.53</span></td><td>36.9<span class="ci">±1.17</span></td><td>53.4</td></tr>
+              <tr><th scope="row"><abbr title="Memory-FT (All Tokens)">MFT-A</abbr></th><td>93.9<span class="ci">±1.04</span></td><td>40.7<span class="ci">±1.75</span></td><td>66.6<span class="ci">±1.12</span></td><td>67.1</td><td>496.7<span class="ci">±4.04</span></td><td>11.5<span class="ci">±0.40</span></td><td>62.8<span class="ci">±1.49</span></td><td>51.3<span class="ci">±1.57</span></td><td>33.7<span class="ci">±1.13</span></td><td>49.3</td></tr>
+              <tr class="ours"><th scope="row">EngramEdit</th><td><strong>99.5</strong><span class="ci">±0.31</span></td><td><strong>97.0</strong><span class="ci">±0.69</span></td><td><strong>85.2</strong><span class="ci">±0.92</span></td><td><strong>93.9</strong></td><td><strong>565.2</strong><span class="ci">±1.10</span></td><td><strong>16.1</strong><span class="ci">±0.36</span></td><td><strong>97.3</strong><span class="ci">±0.40</span></td><td><strong>93.7</strong><span class="ci">±0.79</span></td><td>38.3<span class="ci">±1.18</span></td><td><strong>76.4</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Using Updated Facts in Reasoning</h3>
+        <p>On MQuAKE, updated facts support multi-hop answers. With chain-of-thought prompting, EngramEdit reaches nearly three times the strongest baseline's accuracy and leads across the evaluated hop counts.</p>
         <figure>
-          <img src="./assets/{pipeline.png}" alt="Method pipeline">
-          <figcaption>Method pipeline.</figcaption>
+          <a class="figure-link" href="./assets/mquake_multihop.svg">
+            <img src="./assets/mquake_multihop.svg" alt="Direct and chain-of-thought multi-hop accuracy, including results by hop count on MQuAKE." loading="lazy">
+          </a>
+          <figcaption>MQuAKE results with direct and chain-of-thought prompting, including chain-of-thought accuracy by hop count.</figcaption>
+        </figure>
+        <h3>Preserving General Capabilities</h3>
+        <p>General capabilities are largely preserved through 5,000 sequential CounterFact edits. The evaluation covers six tasks with 100 examples per task and reports mean F1 and changes on individual tasks.</p>
+        <figure>
+          <a class="figure-link" href="./assets/general_capabilities.svg">
+            <img src="./assets/general_capabilities.svg" alt="Mean general-capability F1 during sequential editing and task-level changes after 5,000 edits." loading="lazy">
+          </a>
+          <figcaption>Mean F1 during sequential editing and task-level changes after 5,000 edits, relative to pre-edit scores.</figcaption>
         </figure>
       </div>
     </section>
 
-    <section>
-      <h2>📊 Results</h2>
-      <div class="card grid2">
-        <figure>
-          <img src="./assets/{result1.png}">
-          <figcaption>Result 1.</figcaption>
-        </figure>
-        <figure>
-          <img src="./assets/{result2.png}">
-          <figcaption>Result 2.</figcaption>
-        </figure>
-      </div>
-    </section>
 
-    <section>
-      <h2>📚 BibTeX</h2>
+    <section id="citation">
+      <h2>Citation</h2>
       <div class="card bibtex-wrap">
-        <button class="copy-btn" id="copy-btn">Copy</button>
-        Please consider citing our work if you find it useful:
-        <pre id="bibtex">
-@misc{yourproject2025,
-  title   = {{Project Title}},
-  author  = {{Author 1} and {Author 2} and {Author 3}},
-  year    = {2025},
-  eprint  = {xxxx.xxxxx},
-  archivePrefix = {arXiv},
-  primaryClass  = {cs.CL}
-}
-    </pre>
+        <button class="copy-btn" id="copy-btn" type="button">Copy</button>
+        <p>You can cite the repository as:</p>
+        <pre id="bibtex">@misc{cai2026engramedit,
+  title  = {EngramEdit: Decoupled Knowledge Updates in LLMs through Conditional Memory},
+  author = {Hongru Cai and Ran Wei and Wenjie Wang and Chengfa Wu and Ning Song and Yongqi Li and Wenjie Li},
+  year   = {2026},
+  url    = {https://github.com/ModalityDance/EngramEdit}
+}</pre>
       </div>
     </section>
 
-
-    <section>
-      <h2>🙏 Acknowledgements</h2>
+    <section id="acknowledgements">
+      <h2>Acknowledgements</h2>
       <div class="card">
-        <p>
-          Acknowledge related projects, datasets, funding, collaborators.<br>
-          License your code appropriately.
-        </p>
+        <p>We thank the contributors and open-source projects that support EngramEdit with models, editing utilities, datasets, and evaluation resources.</p>
+        <div class="resource-links">
+          <a href="https://huggingface.co/meituan-longcat/LongCat-Flash-Lite">LongCat-Flash-Lite</a>
+          <a href="https://github.com/kmeng01/rome">ROME</a>
+          <a href="https://github.com/kmeng01/memit">MEMIT</a>
+          <a href="https://github.com/princeton-nlp/MQuAKE">MQuAKE</a>
+          <a href="https://pytorch.org/">PyTorch</a>
+          <a href="https://github.com/huggingface/transformers">Transformers</a>
+        </div>
+        <p>The code is available under the <a href="https://github.com/ModalityDance/EngramEdit/blob/main/LICENSE">MIT License</a>.
+        Third-party models, datasets, and dependencies retain their own licenses.</p>
+        <h3>Related Projects</h3>
+        <div class="links">
+          <a class="btn" href="https://github.com/jianghoucheng/AlphaEdit">AlphaEdit · GitHub</a>
+          <a class="btn" href="https://github.com/Terence-Gu/MoEEdit">MoEEdit · GitHub</a>
+        </div>
       </div>
     </section>
 
-    <div class="footnote">
-      🪐 {Project Title} · ModalityDance<br>
-      Maintained by <a href="{your_homepage}" target="_blank" rel="noopener">{Your Name}</a>. Updated on {Date}.
-    </div>
-
-  </div>
+    <footer class="footnote">
+      EngramEdit · <a href="https://github.com/ModalityDance">ModalityDance</a><br>
+      <a href="https://github.com/ModalityDance/EngramEdit/issues">Questions and feedback</a> · Updated October 2026.
+    </footer>
+  </main>
 </body>
-
 </html>

@@ -1,0 +1,20 @@
+{
+    "v_num_grad_steps": 25,
+    "v_lr": 0.5,
+    "v_loss_layer": 13,
+    "lambda_norm": 0.001,
+    "clamp_norm_factor": 32,
+    "kl_factor": 0.0625,
+    "frequency_gamma": 9.0,
+    "frequency_power": 1.0,
+    "frequency_weight_cap": 10.0,
+    "frequency_missing_weight": 1.0,
+    "lambda_ridge": 0.01,
+    "lambda_reuse": 0.05,
+    "length_weights": {
+        "2": 8.0,
+        "3": 2.0,
+        "4": 1.0
+    },
+    "reuse_weight_cap": 64.0
+}

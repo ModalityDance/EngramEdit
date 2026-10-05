@@ -1,0 +1,11 @@
+# Install the CUDA build of PyTorch separately (see README).
+accelerate==1.10.0
+datasets==2.21.0
+einops==0.8.1
+huggingface-hub==0.36.2
+nltk==3.9.1
+numpy>=1.26,<2.5
+scikit-learn==1.6.1
+scipy==1.15.2
+tqdm>=4.67,<5
+transformers==4.57.6
