@@ -12,7 +12,7 @@
   <a href="#">
     <img src="https://img.shields.io/badge/Hugging%20Face-Paper-fcc21b?style=for-the-badge&logo=huggingface&logoColor=white" alt="Hugging Face Paper">
   </a>
-  <a href="#">
+  <a href="https://huggingface.co/collections/ModalityDance/engramedit">
     <img src="https://img.shields.io/badge/Hugging%20Face-Model-fcc21b?style=for-the-badge&logo=huggingface&logoColor=white" alt="Hugging Face Model">
   </a>
   <a href="./LICENSE">
@@ -151,7 +151,7 @@ These scripts use the default editing settings and save results and checkpoints 
 > [!NOTE]
 > 1. Training includes automatic evaluation, so a separate evaluation run is usually unnecessary.
 > 2. You can change the editing settings in the scripts, such as `--num_edits` for batch size and `--paraphrase_append_count` for expression count. Prepare matching expressions and frequency caches when changing data settings.
-> 3. To skip editing and evaluate directly, use our 🤗 **[Hugging Face checkpoints](#)** with the commands below.
+> 3. To skip editing and evaluate directly, use our 🤗 **[Hugging Face checkpoints](https://huggingface.co/collections/ModalityDance/engramedit)** with the commands below.
 
 #### Evaluation
 
