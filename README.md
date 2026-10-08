@@ -6,10 +6,10 @@
   <a href="https://modalitydance.github.io/EngramEdit/">
     <img src="https://img.shields.io/badge/Project-Page-6a5acd?style=for-the-badge" alt="Project Page">
   </a>
-  <a href="#">
+  <a href="https://arxiv.org/abs/2610.10533">
     <img src="https://img.shields.io/badge/Paper-b31b1b?style=for-the-badge&logo=arxiv" alt="Paper">
   </a>
-  <a href="#">
+  <a href="https://huggingface.co/papers/2610.10533">
     <img src="https://img.shields.io/badge/Hugging%20Face-Paper-fcc21b?style=for-the-badge&logo=huggingface&logoColor=white" alt="Hugging Face Paper">
   </a>
   <a href="https://huggingface.co/collections/ModalityDance/engramedit">
@@ -35,6 +35,7 @@
 
 ## 🔥 News
 
+- **[2026.10]** Our [paper](https://arxiv.org/abs/2610.10533) is now available on arXiv.
 - **[2026.10]** Initial release of EngramEdit code and project page.
 
 ## 📑 Table of Contents
@@ -287,14 +288,17 @@ This project is licensed under the [MIT License](LICENSE). Third-party resources
 
 ## 📚 Citation <span id="citation"></span>
 
-The repository can be cited as:
+Please cite our paper as:
 
 ```bibtex
 @misc{cai2026engramedit,
   title  = {EngramEdit: Decoupled Knowledge Updates in LLMs through Conditional Memory},
   author = {Hongru Cai and Ran Wei and Wenjie Wang and Chengfa Wu and Ning Song and Yongqi Li and Wenjie Li},
   year   = {2026},
-  url    = {https://github.com/ModalityDance/EngramEdit}
+  eprint = {2610.10533},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.CL},
+  url    = {https://arxiv.org/abs/2610.10533}
 }
 ```
 
